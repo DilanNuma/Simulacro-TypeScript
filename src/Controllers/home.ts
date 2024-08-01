@@ -1,4 +1,11 @@
-const logoutButton = document.querySelector('#logout-button');
+const logoutButton = document.querySelector('#logout-button') as HTMLButtonElement;
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (!sessionStorage.getItem("token")){
+        window.location.href = "/"
+    }
+});
 
 logoutButton?.addEventListener('click', () => {
     sessionStorage.removeItem('token');

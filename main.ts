@@ -6,8 +6,8 @@ const loginForm = document.querySelector('#loginForm') as HTMLFormElement;
 const emailUser = document.querySelector('#emailUser') as HTMLInputElement;
 const passwordUser = document.querySelector('#passwordUser') as HTMLInputElement;
 
-loginForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+loginForm.addEventListener('submit', async (event: Event) => {
+    event?.preventDefault();
 
     const user = {
         email: emailUser.value,
@@ -20,12 +20,11 @@ loginForm.addEventListener('submit', async (event) => {
         sessionStorage.setItem("token", responseOfLogin.token);
 
         const getToken = sessionStorage.getItem("token");
-        if(getToken){
+        if(getToken) {
             window.location.href = "./src/Views/home.html";
         }
     } catch (err) {
         console.error(err);
-        alert("Error en el inicio de sesión");
     }
 
 
