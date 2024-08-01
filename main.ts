@@ -13,11 +13,20 @@ loginForm.addEventListener('submit', async (event) => {
         email: emailUser.value,
         password: passwordUser.value,
     }
+    try {
+        const pageController = new PageController(url);
+        const responseOfLogin = await pageController.login(user, "login");
 
-    const pageController = new PageController(url);
-    const token = await pageController.login(user, "login");
+        sessionStorage.setItem("token", responseOfLogin.token);
 
-    console.log(token);
-    
+        const getToken = sessionStorage.getItem("token");
+        if(getToken){
+            window.location.href = "./src/Views/home.html";
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error en el inicio de sesión");
+    }
+
 
 });
